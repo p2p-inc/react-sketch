@@ -1,6 +1,24 @@
 declare module 'react-sketch' {
 	import * as React from 'react'
 
+	export enum Tools {
+		Arrow = "arrow",
+		Circle = "circle",
+		DefaultTool = "default-tool",
+		Ellipse = "ellipse",
+		Line = "line",
+		Pan = "pan",
+		Pencil = "pencil",
+		Pointer = "pointer",
+		Polygon = "polygon",
+		Rectangle = "rectangle",
+		RectangleLabel = "rectangle-label",
+		Remove = "remove",
+		Select = "select",
+		Text = "text",
+		Triangle = "triangle",
+	}
+
 	export class SketchField extends React.PureComponent<{
 		// the color of the line
 		lineColor?: string
@@ -32,13 +50,26 @@ declare module 'react-sketch' {
 		// Default initial value
 		defaultValue?: {},
 		// Sketch width
-		width?: number
+		width?: number | string
 		// Sketch height
-		height?: number
+		height?: number | string
 		// Class name to pass to container div of canvas
 		className?: string
 		// Style options to pass to container div of canvas
 		style?: {}
+		isPreview?: boolean;
+		onObjectAdded?: (...args: any[]) => void;
+		onObjectModified?: (...args: any[]) => void;
+		onObjectRemoved?: (...args: any[]) => void;
+		onMouseDown?: (...args: any[]) => void;
+		onMouseMove?: (...args: any[]) => void;
+		onMouseUp?: (...args: any[]) => void;
+		onMouseOut?: (...args: any[]) => void;
+		onObjectMoving?: (...args: any[]) => void;
+		onObjectScaling?: (...args: any[]) => void;
+		onObjectRotating?: (...args: any[]) => void;
+		onSelectionCreated?: (...args: any[]) => void;
+		onSelectionUpdated?: (...args: any[]) => void;
 	}> {
 
 		/**
