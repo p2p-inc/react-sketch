@@ -58,6 +58,7 @@ declare module 'react-sketch' {
 		// Style options to pass to container div of canvas
 		style?: {}
 		isPreview?: boolean;
+		noWindowResizeHandling?: boolean;
 		onObjectAdded?: (...args: any[]) => void;
 		onObjectModified?: (...args: any[]) => void;
 		onObjectRemoved?: (...args: any[]) => void;

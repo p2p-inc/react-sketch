@@ -95,6 +95,8 @@ class SketchField extends PureComponent {
     style: PropTypes.object,
     // StaticCanvas vs Canvas option
     isPreview: PropTypes.bool,
+    // Disable window resize handler
+    noWindowResizeHandling: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -924,7 +926,8 @@ class SketchField extends PureComponent {
       undoSteps,
       defaultValue,
       isPreview = false,
-      backgroundColor
+      backgroundColor,
+      noWindowResizeHandling
     } = this.props;
 
     let canvas = this._fc = isPreview ? new fabric.StaticCanvas(this._canvas) : new fabric.Canvas(this._canvas/*, {
@@ -946,8 +949,10 @@ class SketchField extends PureComponent {
       this._selectedTool = selectedTool;
     }
 
-    // Control resize
-    window.addEventListener('resize', this._resize, false);
+    if (!noWindowResizeHandling) {
+      // Control resize
+      window.addEventListener('resize', this._resize, false);
+    }
 
     // Initialize History, with maximum number of undo steps
     this._history = new History(undoSteps);
